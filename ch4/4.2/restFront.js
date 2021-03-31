@@ -23,6 +23,7 @@ async function getUser() { // 로딩 시 사용자 가져오는 함수
           console.error(err);
         }
       });
+		
       const remove = document.createElement('button');
       remove.textContent = '삭제';
       remove.addEventListener('click', async () => { // 삭제 버튼 클릭
@@ -53,7 +54,7 @@ document.getElementById('form').addEventListener('submit', async (e) => {
     return alert('이름을 입력하세요');
   }
   try {
-    await axios.post('/user', { name });
+    await axios.post('/user', { name }); 
     getUser();
   } catch (err) {
     console.error(err);
