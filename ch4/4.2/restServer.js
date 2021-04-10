@@ -1,4 +1,4 @@
-const http = require('http');
+ const http = require('http');
 const fs = require('fs').promises;
 
 const users = {}; // 데이터 저장용
@@ -37,6 +37,8 @@ http.createServer(async (req, res) => {
 				return req.on('end', () => {
 					console.log('POST 본문(Body):', body);
 					const { name } = JSON.parse(body);
+					console.log({ name });
+					console.log(name);
 					const id = Date.now();
 					console.log(id);
 					users[id] = name;
@@ -53,6 +55,7 @@ http.createServer(async (req, res) => {
 				});
 				return req.on('end', () => {
 					console.log('PUT 본문(Body):', body);
+					console.log('PUT 본문(Body):', JSON.parse(body));
 					users[key] = JSON.parse(body).name;
 					res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
 					return res.end('수정 성공');
